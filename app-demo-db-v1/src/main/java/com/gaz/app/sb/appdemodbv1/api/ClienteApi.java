@@ -2,48 +2,33 @@ package com.gaz.app.sb.appdemodbv1.api;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.gaz.app.sb.appdemodbv1.entity.Cliente;
+import com.gaz.app.sb.appdemodbv1.service.ClienteService;
 
 @RestController
 @RequestMapping
 public class ClienteApi {
+	
+	@Autowired
+	private ClienteService clienteService; //Id -> Field
+	// Se invocan las Interfaces que implentan las clases -> ClienteService
+	// No se invocan las clases, para inyectar los @Beans.
 
-	@GetMapping("/clientes") // Metodo Predeterminado, sin un end-point en el @GetMapping .
+	@GetMapping("/clientes") 
 	public Cliente getCliente() {
 
-		return Cliente.builder().id(1L).razonSocial("TELMEXVISA").rfc("TEL7898").build();
+		return clienteService.getCliente();
 	}
 
 	@GetMapping ("/listaClientes")
 	public List<Cliente> listaClientes() {
 		
-		List<Cliente> clientes = new ArrayList<>();
-		
-		clientes.add(Cliente
-				.builder()
-				.id(1L)
-				.razonSocial("TELMEXVISA")
-				.rfc("TEL7898")
-				.build());
-		
-		clientes.add(Cliente
-				.builder()
-				.id(2L)
-				.razonSocial("TOTALMEGA")
-				.rfc("TOL6543")
-				.build());
-		
-		clientes.add(Cliente
-				.builder()
-				.id(3L)
-				.razonSocial("MOVILDELMAYO")
-				.rfc("MOV5559")
-				.build());
-		
-		return clientes;
+		return clienteService.getClientes();
 	}
 
 }
