@@ -13,4 +13,3 @@ public class AppDemoDbV1Application {
 
 }
 
-//(exclude = {DataSourceAutoConfiguration.class})

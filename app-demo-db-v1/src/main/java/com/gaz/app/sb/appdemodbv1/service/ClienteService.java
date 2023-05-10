@@ -10,8 +10,15 @@ public interface ClienteService {
 	
 	List<Cliente> getClientes();
 	
+	List<Cliente> getByRazonSocial(String razonSocial);
+	
 	Cliente grabar(Cliente clientesave);
-
+	
+	Cliente update(Cliente clienteupdate);
+	
+	void deleteClienteF(Long id); //  2%
+	
+	void deleteClienteL(Long id); // 98% cambiar un estado en la Base de Datos.
 
 
 }
